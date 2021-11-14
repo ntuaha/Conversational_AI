@@ -1,3 +1,6 @@
+# python
+.pytest_cache
+
 # Logs
 logs
 *.log
