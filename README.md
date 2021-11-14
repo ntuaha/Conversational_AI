@@ -60,5 +60,34 @@ systemctl enable --now nginx
 ## 建立資料庫
 
 ```shell
+docker run --name pg --rm -itd -p 5432:5432 -v ${PWD}/psql/data:/var/lib/postgresql/data/pgdata \
+-v ${PWD}/app:/app \
+-e POSTGRES_USER=<user> \
+-e POSTGRES_DB=cai \
+-e POSTGRES_PASSWORD=<pwd> \
+-e PGDATA=/var/lib/postgresql/data/pgdata \
+--network=bridge \
+--hostname=pg \
+postgres:latest
+```
 
+## 改用 docker-compose 進行 (跳過，有遇到無法正常啟動的問題)
+
+```shell
+docker-compose -f docker-compose.yml up -d --remove-orphans
+```
+
+## 建立 nodejs 執行環境
+
+- 建立 container
+
+```shell
+docker run --name base --rm -itd -p 8080:80 -p 1234:443 --network=bridge -v ${PWD}:/app base bash
+docker attach base
+```
+
+- 建立 nodejs 環境
+
+```shell
+docker run --name base --rm -itd -p 8080:80 -p 1234:443 --network=bridge -v ${PWD}:/app base bash
 ```

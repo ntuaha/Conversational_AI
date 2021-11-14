@@ -1,5 +1,6 @@
 # project
 base.tar
+psql
 
 # python
 .pytest_cache
