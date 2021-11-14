@@ -34,7 +34,7 @@ docker export base > base.tar
 
 ```shell
 cat base.tar | docker import - base
-docker run --name base --rm -itd -p 8080:80 -p 1234:443 --network=bridge -v ${PWD}:/app base bash
+docker run --name base --rm -itd -p 8080:80 -p 1234:443 -p 1880:1880 --network=bridge -v ${PWD}:/app --privileged base bash
 ```
 
 ## 安裝 vim
@@ -91,3 +91,22 @@ docker attach base
 ```shell
 docker run --name base --rm -itd -p 8080:80 -p 1234:443 --network=bridge -v ${PWD}:/app base bash
 ```
+
+- 安裝nodered
+
+
+```shell
+# https://github.com/node-red/linux-installers
+bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+dnf groupinstall "Development Tools"
+cd /app
+npm install --unsafe-perm node-red
+node /app/node_modules/node-red/red.js
+```
+
+## 確認 process 的 memory 使用量
+
+```shell
+ps -eo size,pid,user,command --sort -size | awk '{ hr=$1/1024 ; printf("%13.2f Mb ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s ",$x) } print "" }'
+```
+
