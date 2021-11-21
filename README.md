@@ -6,7 +6,7 @@
 - [x] 啟動 centos 環境
 - [x] 建立 NodeRed 環境
 - [ ] 建立帳號密碼的資料庫
-- [ ] 透過登入頁面進入 NodeRed 環境
+- [x] 透過登入頁面進入 NodeRed 環境
 
 ## 建立 Centos 環境
 
@@ -110,3 +110,21 @@ node /app/node_modules/node-red/red.js
 ps -eo size,pid,user,command --sort -size | awk '{ hr=$1/1024 ; printf("%13.2f Mb ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s ",$x) } print "" }'
 ```
 
+## ldap 
+
+```shell
+export NODE_PATH=<PRROJECT>/node-modules
+```
+
+```nodejs
+    adminAuth: require('node-red-contrib-ldap-auth').setup({
+            uri:'ldap://<dns>',
+            base: '<base>',
+            filterTemplate: '(sAMAccountName={{username}})',
+            bind_dn: '<ap_dn>',
+            bind_pw: '<pw>',
+            no_verify_ssl: true,
+            anon_read: false,
+    }),
+
+```

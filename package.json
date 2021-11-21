@@ -1,0 +1,24 @@
+{
+  "name": "conversational_ai",
+  "version": "1.0.0",
+  "description": "## 前言 想要把流程控制交給 Node Red 處理，接下來有幾個步驟要進行",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntuaha/Conversational_AI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ntuaha/Conversational_AI/issues"
+  },
+  "homepage": "https://github.com/ntuaha/Conversational_AI#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-red": "^2.1.3",
+    "node-red-contrib-ldap-auth": "0.0.5"
+  }
+}
